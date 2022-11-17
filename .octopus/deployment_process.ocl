@@ -10,7 +10,7 @@ step "deploy-trident-website" {
         environments = ["staging", "production"]
         name = "Remove from Load Balancer"
         properties = {
-            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 $machineName = $OctopusParameters["Octopus.Machine.Name"]
                 
@@ -19,7 +19,7 @@ step "deploy-trident-website" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool_variable = ""
+        worker_pool = "hosted-windows"
     }
 
     action "deploy-trident-website" {
